@@ -11,7 +11,12 @@ import SwiftUI
 struct GoAroundNewsAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if let user = LocalStorage.user {
+                //Home view
+                Text("Home view, welcome \(user.email)")
+            } else {
+                LoginView()
+            }
         }
     }
 }
