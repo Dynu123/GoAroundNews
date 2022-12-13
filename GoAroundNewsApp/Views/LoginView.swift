@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
     @StateObject private var loginVM = LoginViewModel(networkService: NetworkService(), credential: Credential())
     
-    var loginButtonColor: Color {
+    var authButtonColor: Color {
         loginVM.loginDisabled ? Color.theme.opacity(0.5) : Color.theme
     }
     
@@ -23,7 +21,7 @@ struct LoginView: View {
                     .padding()
                 FormField(fieldName: "Enter password", isSecure: true, fieldValue: $loginVM.credential.password)
                     .padding()
-                SolidButton(title: "Login", bgColor: loginButtonColor, action: { loginVM.login{} })
+                SolidButton(title: "Login", bgColor: authButtonColor, action: { loginVM.login{} })
                 .disabled(loginVM.loginDisabled)
                 .padding(20)
                 
@@ -39,11 +37,16 @@ struct LoginView: View {
                         .padding(.bottom, 8)
                 }
                 Button("Create an account") {
-                    
+                    loginVM.showSignup.toggle()
                 }
                 .foregroundColor(.theme)
                 .bold()
                 .padding(.bottom)
+                .sheet(isPresented: $loginVM.showSignup, content: {
+                    SignupView(showSignUp: $loginVM.showSignup)
+                })
+                
+                
             }
             .autocapitalization(.none)
             .frame(maxWidth: .infinity, maxHeight: 400)
@@ -56,6 +59,10 @@ struct LoginView: View {
                 LoadingAnimationView {
                     Text("Loading...")
                 }
+            }
+            if loginVM.showHome {
+                HomeView()
+                    .environmentObject(loginVM)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

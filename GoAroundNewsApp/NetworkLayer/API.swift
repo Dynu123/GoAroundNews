@@ -10,10 +10,8 @@ import Alamofire
 
 // MARK: - Create API enum conforming to URLRequestBuilder, add the api name
 enum API: URLRequestBuilder {
-    
-    
     case login(credential: Credential)
-    case signup
+    case signup(credential: Credential)
     case getTopNews(country: String, category: String)
     case getNewsOnSearch(text: String)
     case updateProfile
@@ -41,6 +39,8 @@ extension API {
         switch self {
         case .login(let credential):
             return ["email": credential.email, "password": credential.password]
+        case .signup(let credential):
+            return ["email": credential.email, "name": credential.name, "phone": credential.phone, "confirmPassword": credential.confirmPassword, "password": credential.password]
         default:
             return nil
         }

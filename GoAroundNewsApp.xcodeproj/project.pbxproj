@@ -35,6 +35,9 @@
 		86BBC95F2944B59800D2E51E /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC95E2944B59800D2E51E /* MockNetworkService.swift */; };
 		86BBC9612944B6E400D2E51E /* OneTimeLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9602944B6E400D2E51E /* OneTimeLoginTests.swift */; };
 		86BBC9632944B85400D2E51E /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9622944B85400D2E51E /* LoginAPITests.swift */; };
+		86BBC9652947A1CA00D2E51E /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9642947A1CA00D2E51E /* SignupView.swift */; };
+		86BBC9672947A5A100D2E51E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9662947A5A100D2E51E /* SignUpViewModel.swift */; };
+		86BBC96929490D4B00D2E51E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC96829490D4B00D2E51E /* HomeView.swift */; };
 		86C1340E2943D890004E5C2B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1340D2943D890004E5C2B /* ServiceError.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +81,9 @@
 		86BBC95E2944B59800D2E51E /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		86BBC9602944B6E400D2E51E /* OneTimeLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeLoginTests.swift; sourceTree = "<group>"; };
 		86BBC9622944B85400D2E51E /* LoginAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPITests.swift; sourceTree = "<group>"; };
+		86BBC9642947A1CA00D2E51E /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		86BBC9662947A5A100D2E51E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		86BBC96829490D4B00D2E51E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86C1340D2943D890004E5C2B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +166,8 @@
 			children = (
 				868CB0A529414E88001F1B03 /* ContentView.swift */,
 				868CB0CD29415060001F1B03 /* LoginView.swift */,
+				86BBC9642947A1CA00D2E51E /* SignupView.swift */,
+				86BBC96829490D4B00D2E51E /* HomeView.swift */,
 				868CB0CF294150BF001F1B03 /* FormFieldView.swift */,
 				868CB0F429434C81001F1B03 /* LoadingAnimationView.swift */,
 			);
@@ -188,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				868CB0D5294151E8001F1B03 /* LoginViewModel.swift */,
+				86BBC9662947A5A100D2E51E /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -196,9 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				868CB0E1294239ED001F1B03 /* API.swift */,
+				868CB0E729423A1E001F1B03 /* URLRequestBuilder.swift */,
 				868CB0E3294239FB001F1B03 /* AppEnvironment.swift */,
 				868CB0E529423A0B001F1B03 /* NetworkService.swift */,
-				868CB0E729423A1E001F1B03 /* URLRequestBuilder.swift */,
 				868CB0EC29423EDC001F1B03 /* SuccessResponse.swift */,
 				868CB0EE29423EE7001F1B03 /* FailureResponse.swift */,
 				86C1340D2943D890004E5C2B /* ServiceError.swift */,
@@ -343,6 +352,7 @@
 				868CB0E829423A1E001F1B03 /* URLRequestBuilder.swift in Sources */,
 				868CB0D229415156001F1B03 /* SolidButton.swift in Sources */,
 				868CB0ED29423EDC001F1B03 /* SuccessResponse.swift in Sources */,
+				86BBC9672947A5A100D2E51E /* SignUpViewModel.swift in Sources */,
 				86C1340E2943D890004E5C2B /* ServiceError.swift in Sources */,
 				868CB0E4294239FB001F1B03 /* AppEnvironment.swift in Sources */,
 				868CB0EF29423EE7001F1B03 /* FailureResponse.swift in Sources */,
@@ -350,6 +360,8 @@
 				868CB0D4294151BF001F1B03 /* ColorSet.swift in Sources */,
 				868CB0A429414E88001F1B03 /* GoAroundNewsAppApp.swift in Sources */,
 				868CB0E2294239ED001F1B03 /* API.swift in Sources */,
+				86BBC96929490D4B00D2E51E /* HomeView.swift in Sources */,
+				86BBC9652947A1CA00D2E51E /* SignupView.swift in Sources */,
 				868CB0D6294151E8001F1B03 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

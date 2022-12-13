@@ -17,6 +17,7 @@ protocol URLRequestBuilder: URLRequestConvertible {
     var method: HTTPMethod { get }
     var headers: HTTPHeaders? { get }
     var encoding: ParameterEncoding { get }
+    //var queries: Encodable? { get }
     var urlRequest: URLRequest { get }
 }
 
@@ -29,15 +30,6 @@ extension URLRequestBuilder {
     var requestURL: URL {
         return baseURL.appendingPathComponent(path, isDirectory: false)
     }
-    
-//    var encoding: ParameterEncoding {
-//        switch method {
-//        case .get:
-//            return URLEncoding.default
-//        default:
-//            return JSONEncoding.default
-//        }
-//    }
     
     var urlRequest: URLRequest {
         var request = URLRequest(url: requestURL)
@@ -52,3 +44,4 @@ extension URLRequestBuilder {
         return try encoding.encode(urlRequest, with: parameters)
     }
 }
+
