@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = LoginViewModel(networkService: NetworkService(), credential: Credential())
+    @StateObject private var loginVM = LoginViewModel(networkService: NetworkService(), credential: Credential())
+    @StateObject private var newsVM = NewsViewModel(networkService: NetworkService())
+    
     var body: some View {
-        if viewModel.isUserLoggedIn {
-            HomeView()
-                .environmentObject(viewModel)
+        if loginVM.isUserLoggedIn {
+            NewsView()
+                .environmentObject(loginVM)
+                .environmentObject(newsVM)
         } else {
             LoginView()
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

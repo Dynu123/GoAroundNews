@@ -61,7 +61,7 @@ struct LoginView: View {
                 }
             }
             if loginVM.showHome {
-                HomeView()
+                NewsView()
                     .environmentObject(loginVM)
             }
         }

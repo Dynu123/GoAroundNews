@@ -26,7 +26,7 @@ struct SignupView: View {
                     .padding()
                 FormField(fieldName: "Enter password", isSecure: true, fieldValue: $signupVM.credential.password)
                     .padding()
-                FormField(fieldName: "Confirm password", isSecure: false, fieldValue: $signupVM.credential.confirmPassword)
+                FormField(fieldName: "Confirm password", isSecure: true, fieldValue: $signupVM.credential.confirmPassword)
                     .padding()
                 SolidButton(title: "Sign up", bgColor: signUpButtonColor, action: { signupVM.signup{} })
                     .disabled(signupVM.signUpDisabled)
@@ -46,7 +46,7 @@ struct SignupView: View {
                 HStack {
                     Text("Already have an account? ")
                     Button("Sign in") {
-                        
+                        showSignUp = false
                     }
                     .foregroundColor(.theme)
                     .bold()

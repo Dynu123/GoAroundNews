@@ -31,3 +31,12 @@ public struct LoadingAnimationView<Content>: View where Content: View {
         .edgesIgnoringSafeArea(.all)
     }
 }
+
+
+struct LoaderView: View {
+    var body: some View {
+        LoadingAnimationView {
+            Text("Loading...")
+        }
+    }
+}

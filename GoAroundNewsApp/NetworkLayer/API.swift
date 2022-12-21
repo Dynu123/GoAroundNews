@@ -12,7 +12,7 @@ import Alamofire
 enum API: URLRequestBuilder {
     case login(credential: Credential)
     case signup(credential: Credential)
-    case getTopNews(country: String, category: String)
+    case getTopNews(country: NewsCountry, category: NewsCategory)
     case getNewsOnSearch(text: String)
     case updateProfile
 }
@@ -27,7 +27,7 @@ extension API {
         case .signup:
             return "/signup"
         case .getTopNews(let country, let category):
-            return "/news/\(country)/\(category)"
+            return "/news/\(country.rawValue)/\(category.rawValue)"
         case .getNewsOnSearch(let text):
             return "/news/search/\(text)"
         case .updateProfile:
@@ -62,7 +62,7 @@ extension API {
         case .login, .signup:
             return nil
         default:
-            return ["Authorization": "Bearer token"]
+            return ["Authorization": "Bearer \(LocalStorage.user?.token ?? "")"]
         }
     }
     
