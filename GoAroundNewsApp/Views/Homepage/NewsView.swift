@@ -10,6 +10,7 @@ import SwiftUI
 struct NewsView: View {
     @EnvironmentObject var loginVM: LoginViewModel
     @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
+    @State private var selectedNews: News?
     
     var body: some View {
         NavigationStack {
@@ -24,19 +25,21 @@ struct NewsView: View {
                     //                        loginVM.showHome = false
                     //                    }
                     ZStack {
-                        List {
-                            ForEach(newsVM.news.filter({ newsVM.searchText.isEmpty ? true : $0.title.lowercased().contains(newsVM.searchText.lowercased()) }), id: \.id) { news in
-                                Text(news.title)
-                                    .padding(.bottom)
-                            }
+                        List(newsVM.news.filter({ newsVM.searchText.isEmpty ? true : $0.title.lowercased().contains(newsVM.searchText.lowercased()) }), id: \.id) { news in
+                            NewsRowView(news: news)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets())
+                                .onTapGesture {
+                                    selectedNews = news
+                                }
                         }
+                        .listStyle(.plain)
+                        
                         if newsVM.isLoading {
                             LoaderView()
                         }
                     }
-                    
                 }
-                
             }
             .edgesIgnoringSafeArea([.horizontal, .bottom])
             .navigationBarBackButtonHidden()
@@ -65,6 +68,10 @@ struct NewsView: View {
         .onChange(of: newsVM.selectedCountry, perform: { newValue in
             newsVM.fetchNews(country: newsVM.selectedCountry, category: newsVM.selectedCategory) {}
         })
+        .sheet(item: $selectedNews) { selectedNews in
+            SafariView(url: URL(string: selectedNews.url)!)
+                .edgesIgnoringSafeArea(.bottom)
+        }
     }
 }
 

@@ -21,3 +21,18 @@ extension String {
         camelCaseToWords.lowercased().capitalizeFirstLetter
     }
 }
+
+extension String {
+    var date: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.date(from: self)
+    }
+    
+    var relative: String {
+        let date = self.date ?? Date()
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: date, relativeTo: Date.now)
+    }
+}

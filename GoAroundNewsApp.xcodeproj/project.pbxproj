@@ -35,6 +35,8 @@
 		86B8F4102953AC2E00BE5DFA /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8F40F2953AC2E00BE5DFA /* TitleBarView.swift */; };
 		86B8F4122953B56600BE5DFA /* NewsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8F4112953B56600BE5DFA /* NewsCategory.swift */; };
 		86B8F4142953B57C00BE5DFA /* NewsCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8F4132953B57C00BE5DFA /* NewsCountry.swift */; };
+		86B8F4192953B66000BE5DFA /* NewsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8F4182953B65F00BE5DFA /* NewsRowView.swift */; };
+		86B8F41F2954D75E00BE5DFA /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8F41E2954D75E00BE5DFA /* SafariView.swift */; };
 		86BBC9542943EDB300D2E51E /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9532943EDB300D2E51E /* ViewState.swift */; };
 		86BBC9562943F51A00D2E51E /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9552943F51A00D2E51E /* LocalStorage.swift */; };
 		86BBC9582943F69400D2E51E /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9572943F69400D2E51E /* Auth.swift */; };
@@ -89,6 +91,8 @@
 		86B8F40F2953AC2E00BE5DFA /* TitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
 		86B8F4112953B56600BE5DFA /* NewsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategory.swift; sourceTree = "<group>"; };
 		86B8F4132953B57C00BE5DFA /* NewsCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCountry.swift; sourceTree = "<group>"; };
+		86B8F4182953B65F00BE5DFA /* NewsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowView.swift; sourceTree = "<group>"; };
+		86B8F41E2954D75E00BE5DFA /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		86BBC9532943EDB300D2E51E /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		86BBC9552943F51A00D2E51E /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		86BBC9572943F69400D2E51E /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 		868CB0DC2942395B001F1B03 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				86B8F41D2954D74700BE5DFA /* NewsDetail */,
 				868CB0A529414E88001F1B03 /* ContentView.swift */,
 				86B8F4162953B5F900BE5DFA /* AuthPage */,
 				86B8F4152953B5D800BE5DFA /* Homepage */,
@@ -245,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				86BBC96829490D4B00D2E51E /* NewsView.swift */,
+				86B8F4182953B65F00BE5DFA /* NewsRowView.swift */,
 				86B8F40F2953AC2E00BE5DFA /* TitleBarView.swift */,
 				86B8F40B2953ABDD00BE5DFA /* SearchBarView.swift */,
 				86B8F4092953ABB900BE5DFA /* CountryListView.swift */,
@@ -269,6 +275,14 @@
 				868CB0F429434C81001F1B03 /* LoadingAnimationView.swift */,
 			);
 			path = Loader;
+			sourceTree = "<group>";
+		};
+		86B8F41D2954D74700BE5DFA /* NewsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				86B8F41E2954D75E00BE5DFA /* SafariView.swift */,
+			);
+			path = NewsDetail;
 			sourceTree = "<group>";
 		};
 		86BBC9522943EDA200D2E51E /* Enums */ = {
@@ -399,6 +413,7 @@
 				868CB0A629414E88001F1B03 /* ContentView.swift in Sources */,
 				868CB0F529434C81001F1B03 /* LoadingAnimationView.swift in Sources */,
 				868CB0F12942565B001F1B03 /* Credential.swift in Sources */,
+				86B8F41F2954D75E00BE5DFA /* SafariView.swift in Sources */,
 				868CB0E829423A1E001F1B03 /* URLRequestBuilder.swift in Sources */,
 				868CB0D229415156001F1B03 /* SolidButton.swift in Sources */,
 				868CB0ED29423EDC001F1B03 /* SuccessResponse.swift in Sources */,
@@ -410,6 +425,7 @@
 				868CB0D4294151BF001F1B03 /* ColorSet.swift in Sources */,
 				868CB0A429414E88001F1B03 /* GoAroundNewsAppApp.swift in Sources */,
 				86B8F40E2953AC0300BE5DFA /* CategoryView.swift in Sources */,
+				86B8F4192953B66000BE5DFA /* NewsRowView.swift in Sources */,
 				868CB0E2294239ED001F1B03 /* API.swift in Sources */,
 				86BBC96929490D4B00D2E51E /* NewsView.swift in Sources */,
 				86B8F4102953AC2E00BE5DFA /* TitleBarView.swift in Sources */,
