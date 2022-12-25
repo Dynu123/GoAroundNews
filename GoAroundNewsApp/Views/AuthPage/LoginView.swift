@@ -61,7 +61,7 @@ struct LoginView: View {
                 }
             }
             if loginVM.showHome {
-                NewsView()
+                BottomTabBarView()
                     .environmentObject(loginVM)
             }
         }

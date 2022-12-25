@@ -15,6 +15,7 @@ enum API: URLRequestBuilder {
     case getTopNews(country: NewsCountry, category: NewsCategory)
     case getNewsOnSearch(text: String)
     case updateProfile
+    case changePassword(query: UpdatePasswordQuery)
 }
 
 // MARK: - Extend API to implement the inputs
@@ -32,6 +33,8 @@ extension API {
             return "/news/search/\(text)"
         case .updateProfile:
             return "/user/update"
+        case .changePassword:
+            return "/user/changepassword"
         }
     }
     
@@ -41,6 +44,8 @@ extension API {
             return ["email": credential.email, "password": credential.password]
         case .signup(let credential):
             return ["email": credential.email, "name": credential.name, "phone": credential.phone, "confirmPassword": credential.confirmPassword, "password": credential.password]
+        case .changePassword(let query):
+            return ["id": LocalStorage.user?.id ?? 0, "currentpassword": query.currentPassword, "newpassword": query.newPassword, "confirmpassword": query.confirmPassword]
         default:
             return nil
         }
@@ -52,7 +57,7 @@ extension API {
             return .post
         case .getTopNews, .getNewsOnSearch:
             return .get
-        case .updateProfile:
+        case .updateProfile, .changePassword:
             return .put
         }
     }
@@ -77,3 +82,8 @@ extension API {
     
 }
 
+struct UpdatePasswordQuery {
+    var currentPassword: String
+    var newPassword: String
+    var confirmPassword: String
+}

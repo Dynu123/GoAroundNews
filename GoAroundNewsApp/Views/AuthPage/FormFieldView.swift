@@ -19,17 +19,17 @@ struct FormField: View {
             if isSecure {
                 SecureField(fieldName, text: $fieldValue)
                     .font(.system(.headline, design: .rounded))
-                    .padding(.horizontal)
+                    //.padding(.horizontal)
                     .accentColor(Color.theme)
             } else {
                 TextField(fieldName, text: $fieldValue)
                     .font(.system(.headline, design: .rounded))
-                    .padding(.horizontal)
+                    //.padding(.horizontal)
                     .accentColor(Color.theme)
             }
             Divider()
                 .frame(height: 1)
                 .background(Color.theme.opacity(0.5))
-                .padding(.horizontal)
+                //.padding(.horizontal)
         } }
 }

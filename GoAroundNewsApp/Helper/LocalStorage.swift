@@ -16,6 +16,15 @@ class LocalStorage {
             UserDefaults.standard.setObject(newValue, forKey: .userKey)
         }
     }
+    
+    static var selectedCountry: NewsCountry? {
+        get {
+            return UserDefaults.standard.readObject(dataType: NewsCountry.self, key: "country")
+        }
+        set {
+            UserDefaults.standard.setObject(newValue, forKey: "country")
+        }
+    }
 }
 
 extension UserDefaults {

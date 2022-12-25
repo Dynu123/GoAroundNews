@@ -22,6 +22,6 @@ struct TitleBarView: View {
             }
             Spacer()
         }
-        .padding(16)
+        .padding(.top, 44)
     }
 }

@@ -8,29 +8,28 @@
 import SwiftUI
 
 struct NewsView: View {
-    @EnvironmentObject var loginVM: LoginViewModel
     @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
-    @State private var selectedNews: News?
+    @AppStorage("selectedCountry") private var selectedCountry = NewsCountry.Ireland
     
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack(alignment: .leading) {
-                    TitleBarView()
-                    SearchBarView(text: $newsVM.searchText)
+//                    HStack {
+//                        Text("Location:")
+//                            .foregroundColor(.primary)
+//                            .font(.system(.body, design: .rounded, weight: .regular))
+//                        CountryListView()
+//                            .environmentObject(newsVM)
+//                    }.padding(.horizontal, 16)
                     CategoryView(selectedCategory: $newsVM.selectedCategory)
-                    //                    Button("Logout") {
-                    //                        LocalStorage.user = nil
-                    //                        loginVM.isUserLoggedIn = false
-                    //                        loginVM.showHome = false
-                    //                    }
                     ZStack {
-                        List(newsVM.news.filter({ newsVM.searchText.isEmpty ? true : $0.title.lowercased().contains(newsVM.searchText.lowercased()) }), id: \.id) { news in
+                        List(newsVM.filteredNews, id: \.id) { news in
                             NewsRowView(news: news)
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets())
                                 .onTapGesture {
-                                    selectedNews = news
+                                    newsVM.selectedNews = news
                                 }
                         }
                         .listStyle(.plain)
@@ -41,36 +40,21 @@ struct NewsView: View {
                     }
                 }
             }
-            .edgesIgnoringSafeArea([.horizontal, .bottom])
-            .navigationBarBackButtonHidden()
+            .navigationTitle("Discover")
             .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        //showProfile = true
-                    } label: {
-                        Image(systemName: "list.bullet")
-                            .resizable()
-                            .accentColor(Color.theme)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    CountryListView().environmentObject(newsVM)
-                }
-            }
         }
         .onAppear() {
-            newsVM.fetchNews(country: newsVM.selectedCountry, category: newsVM.selectedCategory) {}
+            newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
         }
+        .searchable(text: $newsVM.searchText)
         .onChange(of: newsVM.selectedCategory, perform: { newValue in
-            newsVM.fetchNews(country: newsVM.selectedCountry, category: newsVM.selectedCategory) {}
+            newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
         })
-        .onChange(of: newsVM.selectedCountry, perform: { newValue in
-            newsVM.fetchNews(country: newsVM.selectedCountry, category: newsVM.selectedCategory) {}
+        .onChange(of: selectedCountry, perform: { newValue in
+            newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
         })
-        .sheet(item: $selectedNews) { selectedNews in
+        .sheet(item: $newsVM.selectedNews) { selectedNews in
             SafariView(url: URL(string: selectedNews.url)!)
-                .edgesIgnoringSafeArea(.bottom)
         }
     }
 }

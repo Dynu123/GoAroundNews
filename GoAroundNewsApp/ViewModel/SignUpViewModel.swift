@@ -9,13 +9,6 @@ import Foundation
 import Combine
 import Alamofire
 
-struct SignUpQuery: Codable {
-    let name: String
-    let email: String
-    let password: String
-    let phone: String
-}
-
 class SignupViewModel: ObservableObject {
     @Published var credential: Credential
     @Published var isLoading: Bool = false
@@ -38,7 +31,7 @@ class SignupViewModel: ObservableObject {
             guard let self = self else { return }
             self.isLoading = false
             switch result {
-            case .success(let value):
+            case .success:
                 self.presentAlert = true
                 completion() // for test case
             case .failure:

@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct GoAroundNewsAppApp: App {
+    @AppStorage("appTheme") private var isDarkModeOn = false
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(isDarkModeOn ? .dark : .light)
         }
     }
 }

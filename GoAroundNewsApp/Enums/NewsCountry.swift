@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum NewsCountry: String, CaseIterable {
+enum NewsCountry: String, CaseIterable, Codable {
     var name: String {
         get { return String(describing: self) }
     }

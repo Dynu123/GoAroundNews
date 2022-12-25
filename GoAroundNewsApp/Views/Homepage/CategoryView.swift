@@ -29,10 +29,12 @@ struct CategoryView: View {
                                         }
                                     }
                                     .id(index)
-                                Rectangle()
-                                    .fill(selectedIndex == index ? Color.theme.opacity(0.5) : .white)
-                                    .frame(maxWidth: .infinity, maxHeight: 2)
-                                    .padding(5)
+                                if selectedIndex == index {
+                                    Rectangle()
+                                        .fill(selectedIndex == index ? Color.theme.opacity(0.5) : .white)
+                                        .frame(maxWidth: .infinity, maxHeight: 2)
+                                        .padding(5)
+                                }
                             }
                         }
                     }

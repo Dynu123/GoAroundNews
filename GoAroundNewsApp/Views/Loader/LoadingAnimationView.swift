@@ -28,7 +28,7 @@ public struct LoadingAnimationView<Content>: View where Content: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
             .background(Color(UIColor.systemBackground))
         }
-        .edgesIgnoringSafeArea(.all)
+        //.edgesIgnoringSafeArea(.all)
     }
 }
 

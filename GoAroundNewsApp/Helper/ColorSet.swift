@@ -9,6 +9,6 @@ import SwiftUI
 
 extension Color {
     static var theme: Color {
-        return Color(red: 134.0/255.0, green: 0, blue: 255.0/255.0) // indigo
+        return Color.accentColor// indigo
     }
 }
