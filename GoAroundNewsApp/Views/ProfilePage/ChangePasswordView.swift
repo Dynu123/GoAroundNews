@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChangePasswordView: View {
     @EnvironmentObject var profileVM: ProfileViewModel
-    @Binding var showChangePassword: Bool
+    @Environment(\.presentationMode) var presentation
     
     var body: some View {
         ZStack {
@@ -27,8 +27,8 @@ struct ChangePasswordView: View {
             }
         }
         .alert(isPresented: $profileVM.presentAlert) {
-            Alert(title: Text(""), message: Text("Password updated succesfull!"), dismissButton: .cancel(Text("OK"), action: {
-                showChangePassword = false
+            Alert(title: Text("Password updated succesfull !"), message: Text(""), dismissButton: .cancel(Text("OK"), action: {
+                presentation.wrappedValue.dismiss()
             }))
         }
     }

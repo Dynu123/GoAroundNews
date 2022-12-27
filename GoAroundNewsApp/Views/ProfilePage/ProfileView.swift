@@ -29,16 +29,18 @@ struct ProfileView: View {
                     }
                 }
                 Divider()
-                HStack {
-                    Text("Change password")
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .resizable()
-                        .frame(width: 10, height: 15)
-                        .tint(.primary)
-                }
-                .onTapGesture {
-                    profileVM.showChangePassword = true
+                NavigationLink {
+                    ChangePasswordView().environmentObject(profileVM)
+                } label: {
+                    HStack {
+                        Text("Change password")
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .resizable()
+                            .frame(width: 10, height: 15)
+                            .tint(.primary)
+                    }
                 }
                 Divider()
                 CountryListView()
@@ -55,9 +57,6 @@ struct ProfileView: View {
             }
             .navigationTitle("Settings")
             .padding(16)
-            .sheet(isPresented: $profileVM.showChangePassword) {
-                ChangePasswordView(showChangePassword: $profileVM.showChangePassword).environmentObject(profileVM)
-            }
         }
     }
 }

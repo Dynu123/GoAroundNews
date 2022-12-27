@@ -15,13 +15,7 @@ struct NewsView: View {
         NavigationStack {
             ZStack {
                 VStack(alignment: .leading) {
-//                    HStack {
-//                        Text("Location:")
-//                            .foregroundColor(.primary)
-//                            .font(.system(.body, design: .rounded, weight: .regular))
-//                        CountryListView()
-//                            .environmentObject(newsVM)
-//                    }.padding(.horizontal, 16)
+                    CountryListView().hidden()
                     CategoryView(selectedCategory: $newsVM.selectedCategory)
                     ZStack {
                         List(newsVM.filteredNews, id: \.id) { news in

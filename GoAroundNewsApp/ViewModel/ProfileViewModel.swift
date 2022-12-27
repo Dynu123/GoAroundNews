@@ -13,7 +13,6 @@ class ProfileViewModel: ObservableObject {
     @Published var newPassword: String = ""
     @Published var confirmPassword: String = ""
     @Published var presentAlert: Bool = false
-    @Published var showChangePassword = false
     
     @Published var isLoading: Bool = false
     private var bag: [AnyCancellable] = []
