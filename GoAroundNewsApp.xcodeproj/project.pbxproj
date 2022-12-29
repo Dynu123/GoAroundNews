@@ -55,6 +55,7 @@
 		86C1340E2943D890004E5C2B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1340D2943D890004E5C2B /* ServiceError.swift */; };
 		86EFF73529579D3C002FD8A8 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */; };
 		86EFF73729579E00002FD8A8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */; };
+		86EFF739295E192A002FD8A8 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF738295E1929002FD8A8 /* View+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		86C1340D2943D890004E5C2B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		86EFF738295E1929002FD8A8 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				868CB0D729422392001F1B03 /* String+extension.swift */,
+				86EFF738295E1929002FD8A8 /* View+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				86B8F40A2953ABB900BE5DFA /* CountryListView.swift in Sources */,
 				86BBC9542943EDB300D2E51E /* ViewState.swift in Sources */,
 				86BBC96D294BD72C00D2E51E /* NewsViewModel.swift in Sources */,
+				86EFF739295E192A002FD8A8 /* View+extension.swift in Sources */,
 				86BBC9562943F51A00D2E51E /* LocalStorage.swift in Sources */,
 				868CB0D829422392001F1B03 /* String+extension.swift in Sources */,
 				86B8F4282954F15400BE5DFA /* SearchNewsView.swift in Sources */,

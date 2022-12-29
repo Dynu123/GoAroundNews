@@ -23,6 +23,24 @@ struct SearchNewsView: View {
                             .onTapGesture {
                                 newsVM.selectedNews = news
                             }
+                            .swipeActions(){
+                                Button {
+                                    print("save")
+                                } label: {
+                                    Image(systemName: "bookmark")
+                                        .foregroundColor(Color.theme)
+                                    
+                                }
+                                //.tint(.white)
+                            }
+                            .swipeActions(){
+                                Button(action: {
+                                    presentShareSheet(url: URL(string: news.url)!)
+                                }) {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                                .tint(.theme)
+                            }
                     }
                     .listStyle(.plain)
                 }

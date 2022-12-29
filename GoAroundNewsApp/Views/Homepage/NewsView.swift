@@ -10,6 +10,7 @@ import SwiftUI
 struct NewsView: View {
     @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
     @AppStorage("selectedCountry") private var selectedCountry = NewsCountry.Ireland
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -18,13 +19,31 @@ struct NewsView: View {
                     CountryListView().hidden()
                     CategoryView(selectedCategory: $newsVM.selectedCategory)
                     ZStack {
-                        List(newsVM.filteredNews, id: \.id) { news in
-                            NewsRowView(news: news)
-                                .listRowSeparator(.hidden)
-                                .listRowInsets(EdgeInsets())
-                                .onTapGesture {
-                                    newsVM.selectedNews = news
-                                }
+                        List {
+                            ForEach(newsVM.filteredNews, id: \.id) { news in
+                                NewsRowView(news: news)
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets())
+                                    .onTapGesture {
+                                        newsVM.selectedNews = news
+                                    }
+                                    .swipeActions(){
+                                        Button {
+                                            print("save")
+                                        } label: {
+                                            Image(systemName: "bookmark")
+                                                .foregroundColor(Color.theme)
+                                        }
+                                    }
+                                    .swipeActions(){
+                                        Button(action: {
+                                            presentShareSheet(url: URL(string: news.url)!)
+                                        }) {
+                                            Image(systemName: "square.and.arrow.up")
+                                        }
+                                        .tint(.theme)
+                                    }
+                            }
                         }
                         .listStyle(.plain)
                         
@@ -52,4 +71,5 @@ struct NewsView: View {
         }
     }
 }
+
 
