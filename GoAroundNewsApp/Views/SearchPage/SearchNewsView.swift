@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchNewsView: View {
+    @EnvironmentObject var newsBookmarkVM: BookmarkViewModel
     @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
     
     var body: some View {
@@ -23,17 +24,19 @@ struct SearchNewsView: View {
                             .onTapGesture {
                                 newsVM.selectedNews = news
                             }
-                            .swipeActions(){
+                            .swipeActions(edge: .leading){
                                 Button {
-                                    print("save")
+                                    withAnimation {
+                                        newsBookmarkVM.toggleSaved(item: news)
+                                    }
                                 } label: {
-                                    Image(systemName: "bookmark")
-                                        .foregroundColor(Color.theme)
-                                    
+                                    Image(systemName: "heart.fill" )
+                                        .resizable()
+                                        .frame(width: 50, height:50)
                                 }
-                                //.tint(.white)
+                                .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
                             }
-                            .swipeActions(){
+                            .swipeActions(edge: .trailing) {
                                 Button(action: {
                                     presentShareSheet(url: URL(string: news.url)!)
                                 }) {

@@ -8,18 +8,50 @@
 import SwiftUI
 
 struct BookmarkView: View {
+    @EnvironmentObject var newsBookmarkVM: BookmarkViewModel
+    @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
+    
     var body: some View {
         NavigationStack {
-            Text("Hello, World!")
-                .navigationBarTitleDisplayMode(.large)
-                .navigationTitle("Bookmarks")
+            ZStack {
+                List {
+                    ForEach(newsBookmarkVM.filteredNews, id: \.id) { news in
+                        NewsRowView(news: news)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                            .onTapGesture {
+                                newsVM.selectedNews = news
+                            }
+                            .swipeActions(edge: .leading){
+                                Button {
+                                    withAnimation {
+                                        newsBookmarkVM.toggleSaved(item: news)
+                                    }
+                                } label: {
+                                    Image(systemName: "heart.fill" )
+                                        .resizable()
+                                        .frame(width: 50, height:50)
+                                }
+                                .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
+                            }
+                            .swipeActions(edge: .trailing) {
+                                Button(action: {
+                                    presentShareSheet(url: URL(string: news.url)!)
+                                }) {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                                .tint(.theme)
+                            }
+                    }
+                }
+                .listStyle(.plain)
+            }
+            .navigationTitle("Favourites")
+            .navigationBarTitleDisplayMode(.large)
+            .searchable(text: $newsBookmarkVM.searchText)
+            .sheet(item: $newsVM.selectedNews) { selectedNews in
+                SafariView(url: URL(string: selectedNews.url)!)
+            }
         }
-        
-    }
-}
-
-struct BookmarkView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookmarkView()
     }
 }

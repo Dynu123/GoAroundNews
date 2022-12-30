@@ -56,6 +56,7 @@
 		86EFF73529579D3C002FD8A8 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */; };
 		86EFF73729579E00002FD8A8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */; };
 		86EFF739295E192A002FD8A8 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF738295E1929002FD8A8 /* View+extension.swift */; };
+		86EFF73B295E2363002FD8A8 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73A295E2363002FD8A8 /* Datastore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		86EFF738295E1929002FD8A8 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
+		86EFF73A295E2363002FD8A8 /* Datastore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 				86BBC9662947A5A100D2E51E /* SignUpViewModel.swift */,
 				86BBC96C294BD72C00D2E51E /* NewsViewModel.swift */,
 				86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */,
+				86EFF73A295E2363002FD8A8 /* Datastore.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				86B8F4282954F15400BE5DFA /* SearchNewsView.swift in Sources */,
 				868CB0CE29415061001F1B03 /* LoginView.swift in Sources */,
 				868CB0D0294150BF001F1B03 /* FormFieldView.swift in Sources */,
+				86EFF73B295E2363002FD8A8 /* Datastore.swift in Sources */,
 				868CB0A629414E88001F1B03 /* ContentView.swift in Sources */,
 				868CB0F529434C81001F1B03 /* LoadingAnimationView.swift in Sources */,
 				868CB0F12942565B001F1B03 /* Credential.swift in Sources */,

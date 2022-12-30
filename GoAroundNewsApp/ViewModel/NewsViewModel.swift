@@ -14,8 +14,10 @@ class NewsViewModel: ObservableObject {
     private var networkService: NetworkServiceProtocol
     private var bag: [AnyCancellable] = []
     @Published var news: [News] = []
+    @Published var savedNews: [News] = []
     @Published var selectedCategory: NewsCategory = .general
     @Published var selectedNews: News?
+    var bookmarkNewsStore = BookmarkStore()
     
     var filteredNews: [News] {
         searchText.isEmpty ? news : news.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
@@ -24,6 +26,7 @@ class NewsViewModel: ObservableObject {
     var searchNews: [News] {
         searchText.isEmpty ? [] : news
     }
+    
     
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService

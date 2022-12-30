@@ -22,7 +22,7 @@ struct BottomTabBarView: View {
                 }
             BookmarkView()
                 .tabItem {
-                    Label("Saved", systemImage: "bookmark")
+                    Label("Favourites", systemImage: "heart")
                 }
             ProfileView()
                 .tabItem {

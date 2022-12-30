@@ -7,17 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D283043A-2489-47EE-9BB0-F89A54AAB208"
+            uuid = "F7C00F4C-1113-4B7A-AE21-58D4FE34AFAE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoAroundNewsApp/ViewModel/ProfileViewModel.swift"
+            filePath = "GoAroundNewsApp/Views/Homepage/NewsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "changePassword(completion:)"
-            landmarkType = "9">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "F7C00F4C-1113-4B7A-AE21-58D4FE34AFAE - 3611499af69861fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #6 @Sendable () async -&gt; () in GoAroundNewsApp.NewsView.body.getter : some"
+                  moduleName = "GoAroundNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dyana/Desktop/Thesis/Artefact/GoAroundNewsApp_FrontEnd/GoAroundNewsApp/GoAroundNewsApp/Views/Homepage/NewsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "F7C00F4C-1113-4B7A-AE21-58D4FE34AFAE - c69aadc6a5ea7f15"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #6 @Sendable () async -&gt; () in GoAroundNewsApp.NewsView.body.getter : some"
+                  moduleName = "GoAroundNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dyana/Desktop/Thesis/Artefact/GoAroundNewsApp_FrontEnd/GoAroundNewsApp/GoAroundNewsApp/Views/Homepage/NewsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

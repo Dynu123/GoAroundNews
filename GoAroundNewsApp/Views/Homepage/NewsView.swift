@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewsView: View {
     @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
+    @EnvironmentObject var newsBookmarkVM: BookmarkViewModel
     @AppStorage("selectedCountry") private var selectedCountry = NewsCountry.Ireland
     @Environment(\.dismiss) var dismiss
     
@@ -27,15 +28,19 @@ struct NewsView: View {
                                     .onTapGesture {
                                         newsVM.selectedNews = news
                                     }
-                                    .swipeActions(){
+                                    .swipeActions(edge: .leading){
                                         Button {
-                                            print("save")
+                                            withAnimation {
+                                                newsBookmarkVM.toggleSaved(item: news)
+                                            }
                                         } label: {
-                                            Image(systemName: "bookmark")
-                                                .foregroundColor(Color.theme)
+                                            Image(systemName: "heart.fill" )
+                                                .resizable()
+                                                .frame(width: 50, height:50)
                                         }
+                                        .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
                                     }
-                                    .swipeActions(){
+                                    .swipeActions(edge: .trailing) {
                                         Button(action: {
                                             presentShareSheet(url: URL(string: news.url)!)
                                         }) {
@@ -68,6 +73,9 @@ struct NewsView: View {
         })
         .sheet(item: $newsVM.selectedNews) { selectedNews in
             SafariView(url: URL(string: selectedNews.url)!)
+        }
+        .refreshable {
+            newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
         }
     }
 }

@@ -8,6 +8,16 @@
 import Foundation
 
 class LocalStorage {
+    static var news: [News]? {
+        get {
+            return UserDefaults.standard.readObject(dataType: [News].self, key: "newsKey")
+        }
+        set {
+            UserDefaults.standard.setObject(newValue, forKey: "newsKey")
+        }
+    }
+    
+    
     static var user: User? {
         get {
             return UserDefaults.standard.readObject(dataType: User.self, key: .userKey)
