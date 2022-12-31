@@ -25,7 +25,7 @@ class ProfileViewModel: ObservableObject {
     func changePassword(completion: @escaping () -> Void) {
         isLoading = true
         let query = UpdatePasswordQuery(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
-        self.networkService.execute(API.changePassword(query: query)) { [weak self] (result: Result<Bool, ServiceError>) in
+        self.networkService.execute(API.changePassword(query: query)) { [weak self] (result: Result<Bool, ServiceError>, statusCode) in
             guard let self = self else { return }
             self.isLoading = false
             switch result {
@@ -36,6 +36,6 @@ class ProfileViewModel: ObservableObject {
                 self.presentAlert = false
                 completion()// for test case
             }
-        }.store(in: &bag)
+        }
     }
 }

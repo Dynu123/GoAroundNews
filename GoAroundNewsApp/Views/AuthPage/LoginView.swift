@@ -25,7 +25,6 @@ struct LoginView: View {
                 .disabled(loginVM.loginDisabled)
                 .padding(20)
                 
-                VStack {
                     Divider()
                         .frame(width: 200)
                         .padding(.bottom, 8)
@@ -35,7 +34,7 @@ struct LoginView: View {
                     Divider()
                         .frame(width: 200)
                         .padding(.bottom, 8)
-                }
+                
                 Button("Create an account") {
                     loginVM.showSignup.toggle()
                 }
@@ -45,8 +44,6 @@ struct LoginView: View {
                 .sheet(isPresented: $loginVM.showSignup, content: {
                     SignupView(showSignUp: $loginVM.showSignup)
                 })
-                
-                
             }
             .autocapitalization(.none)
             .frame(maxWidth: .infinity, maxHeight: 400)
@@ -55,6 +52,7 @@ struct LoginView: View {
             .cornerRadius(8)
             .shadow(radius: 4, y: 5)
             .padding(.horizontal)
+            
             if loginVM.isLoading {
                 LoaderView()
             }
@@ -65,11 +63,11 @@ struct LoginView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(UIColor.secondarySystemBackground))
+        .alert(loginVM.loginErrorMessage, isPresented: $loginVM.isLoginAlertPresented) {
+            Button("OK", role: .cancel) {
+                loginVM.loginErrorMessage = ""
+            }
+        }
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}

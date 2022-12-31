@@ -44,7 +44,7 @@ class NewsViewModel: ObservableObject {
     
     func fetchTopNews(country: NewsCountry, category: NewsCategory, completion: @escaping () -> Void) {
         viewState = .loading
-        self.networkService.execute(API.getTopNews(country: country, category: category)) { [weak self] (result: Result<[News], ServiceError>) in
+        self.networkService.execute(API.getTopNews(country: country, category: category)) { [weak self] (result: Result<[News], ServiceError>, statusCode) in
             guard let self = self else { return }
             switch result {
             case .success(let news):
@@ -55,12 +55,12 @@ class NewsViewModel: ObservableObject {
                 self.viewState = .failure(error)
                 completion()// for test case
             }
-        }.store(in: &bag)
+        }
     }
     
     func searchNews(with query: String, completion: @escaping () -> Void) {
         viewState1 = .loading
-        self.networkService.execute(API.getNewsOnSearch(text: query)) { [weak self] (result: Result<[News], ServiceError>) in
+        self.networkService.execute(API.getNewsOnSearch(text: query)) { [weak self] (result: Result<[News], ServiceError>, statusCode) in
             guard let self = self else { return }
             switch result {
             case .success(let news):
@@ -72,6 +72,6 @@ class NewsViewModel: ObservableObject {
                 self.news = []
                 completion()// for test case
             }
-        }.store(in: &bag)
+        }
     }
 }

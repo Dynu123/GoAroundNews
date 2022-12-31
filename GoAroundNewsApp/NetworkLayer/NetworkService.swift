@@ -12,43 +12,40 @@ import Alamofire
 
 // MARK: - NetworkServiceProtocol to execute URLRequest
 protocol NetworkServiceProtocol: AnyObject {
-    func execute<T: Codable>(_ urlRequest: URLRequestBuilder, completion: @escaping (Result<T, ServiceError>) -> Void) -> AnyCancellable
+    func execute<T: Codable>(_ urlRequest: URLRequestBuilder, completion: @escaping (Result<T, ServiceError>, Int?) -> Void)
 }
 
 // MARK: - Extend NetworkServiceProtocol to implement the method
 extension NetworkServiceProtocol {
-    func execute<T: Decodable>(_ urlRequest: URLRequestBuilder,completion: @escaping (Result<T, ServiceError>) -> Void) -> AnyCancellable {
+    func execute<T: Decodable>(_ urlRequest: URLRequestBuilder,completion: @escaping (Result<T, ServiceError>, Int?) -> Void) {
         
-        let requestPublisher = AF.request(urlRequest).publishDecodable(type: SuccessResponse<T>.self)
-        
-        let cancellable = requestPublisher
-            .subscribe(on: DispatchQueue(label: "Background Queue", qos: .background))
-            .receive(on: RunLoop.main)
-            .sink { (response) in
+        AF.request(urlRequest)
+            .validate()
+            .responseData { (response: DataResponse<Data, AFError>) in
                 switch response.result {
-                case .success:
+                case .success(let data):
                     do {
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let successResponse = try decoder.decode(SuccessResponse<T>.self, from: response.data!)
-                        completion(.success(successResponse.data))
+                        let successResponse = try decoder.decode(SuccessResponse<T>.self, from: data)
+                        completion(.success(successResponse.data), response.response?.statusCode)
                     } catch {
                         do {
-                            let failureResponse = try JSONDecoder().decode(FailureResponse.self, from: response.data!)
-                            if failureResponse.success {
-                                completion(.failure(.serverError(error: error)))
+                            let failureResponse = try JSONDecoder().decode(FailureResponse.self, from: data)
+                            if failureResponse.code == "200" {
+                                completion(.failure(.serverError(message: failureResponse.message)), response.response?.statusCode)
                             } else {
-                                completion(.failure(.serverError(message: failureResponse.message)))
+                                completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                             }
                         } catch {
-                            completion(.failure(.serverError(error: error)))
+                            completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                         }
                     }
                 case .failure(let error):
-                    completion(.failure(.serverError(error: error)))
+                    completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                 }
             }
-        return cancellable
+            
     }
 }
 

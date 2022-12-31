@@ -25,7 +25,7 @@ final class LoginAPITests: XCTestCase {
     
     // MARK: - Test for validating data on successful API call
     func test_login_api_onsuccess() throws {
-        networkService.item = CurrentValueSubject(SuccessResponse<User>.init(code: "200", message: "sucess", data: .sample)).eraseToAnyPublisher()
+        networkService.item = CurrentValueSubject(APIResponse<User>.init(code: "200", message: "sucess", data: .sample)).eraseToAnyPublisher()
         let expectation = expectation(description: "wait for completion")
         viewModel.login {
             expectation.fulfill()

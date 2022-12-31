@@ -27,7 +27,7 @@ class SignupViewModel: ObservableObject {
     
     func signup(completion: @escaping () -> Void) {
         isLoading = true
-        self.networkService.execute(API.signup(credential: credential)) { [weak self] (result: Result<Bool, ServiceError>) in
+        self.networkService.execute(API.signup(credential: credential)) { [weak self] (result: Result<Bool, ServiceError>, statusCode) in
             guard let self = self else { return }
             self.isLoading = false
             switch result {
@@ -38,7 +38,7 @@ class SignupViewModel: ObservableObject {
                 self.presentAlert = false
                 completion()// for test case
             }
-        }.store(in: &bag)
+        }
     }
     
 }
