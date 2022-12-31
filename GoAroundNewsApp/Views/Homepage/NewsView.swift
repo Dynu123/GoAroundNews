@@ -11,7 +11,6 @@ struct NewsView: View {
     @StateObject var newsVM = NewsViewModel(networkService: NetworkService())
     @EnvironmentObject var newsBookmarkVM: BookmarkViewModel
     @AppStorage("selectedCountry") private var selectedCountry = NewsCountry.Ireland
-    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -19,43 +18,38 @@ struct NewsView: View {
                 VStack(alignment: .leading) {
                     CountryListView().hidden()
                     CategoryView(selectedCategory: $newsVM.selectedCategory)
-                    ZStack {
-                        List {
-                            ForEach(newsVM.filteredNews, id: \.id) { news in
-                                NewsRowView(news: news)
-                                    .listRowSeparator(.hidden)
-                                    .listRowInsets(EdgeInsets())
-                                    .onTapGesture {
-                                        newsVM.selectedNews = news
-                                    }
-                                    .swipeActions(edge: .leading){
-                                        Button {
-                                            withAnimation {
-                                                newsBookmarkVM.toggleSaved(item: news)
-                                            }
-                                        } label: {
-                                            Image(systemName: "heart.fill" )
-                                                .resizable()
-                                                .frame(width: 50, height:50)
+                    List {
+                        ForEach(newsVM.filteredNews, id: \.id) { news in
+                            NewsRowView(news: news)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets())
+                                .onTapGesture {
+                                    newsVM.selectedNews = news
+                                }
+                                .swipeActions(edge: .leading){
+                                    Button {
+                                        withAnimation {
+                                            newsBookmarkVM.toggleSaved(item: news)
                                         }
-                                        .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
+                                    } label: {
+                                        Image(systemName: "heart.fill" )
+                                            .resizable()
+                                            .frame(width: 50, height:50)
                                     }
-                                    .swipeActions(edge: .trailing) {
-                                        Button(action: {
-                                            presentShareSheet(url: URL(string: news.url)!)
-                                        }) {
-                                            Image(systemName: "square.and.arrow.up")
-                                        }
-                                        .tint(.theme)
+                                    .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
+                                }
+                                .swipeActions(edge: .trailing) {
+                                    Button(action: {
+                                        presentShareSheet(url: URL(string: news.url)!)
+                                    }) {
+                                        Image(systemName: "square.and.arrow.up")
                                     }
-                            }
-                        }
-                        .listStyle(.plain)
-                        
-                        if newsVM.isLoading {
-                            LoaderView()
+                                    .tint(.theme)
+                                }
                         }
                     }
+                    .listStyle(.plain)
+                    .overlay(overlayView)
                 }
             }
             .navigationTitle("Discover")
@@ -76,6 +70,21 @@ struct NewsView: View {
         }
         .refreshable {
             newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
+        }
+    }
+    
+    @ViewBuilder
+    private var overlayView: some View {
+        switch newsVM.viewState {
+        case .loading, .loadingMore:
+            LoaderView()
+        case .success(let news) where news.isEmpty:
+            NoDataPlaceholderView(text: "No articles found", image: nil)
+        case .failure(let error):
+            RetryView(text: error.localizedDescription) {
+                newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
+            }
+        default: EmptyView()
         }
     }
 }

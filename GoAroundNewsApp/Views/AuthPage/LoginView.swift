@@ -56,9 +56,7 @@ struct LoginView: View {
             .shadow(radius: 4, y: 5)
             .padding(.horizontal)
             if loginVM.isLoading {
-                LoadingAnimationView {
-                    Text("Loading...")
-                }
+                LoaderView()
             }
             if loginVM.showHome {
                 BottomTabBarView()

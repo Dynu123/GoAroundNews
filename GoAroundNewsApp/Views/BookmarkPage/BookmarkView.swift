@@ -13,7 +13,7 @@ struct BookmarkView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack {
+            //ZStack {
                 List {
                     ForEach(newsBookmarkVM.filteredNews, id: \.id) { news in
                         NewsRowView(news: news)
@@ -45,7 +45,8 @@ struct BookmarkView: View {
                     }
                 }
                 .listStyle(.plain)
-            }
+                .overlay(overlayView())
+           // }
             .navigationTitle("Favourites")
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $newsBookmarkVM.searchText)
@@ -54,4 +55,12 @@ struct BookmarkView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func overlayView() -> some View {
+        if newsBookmarkVM.filteredNews.isEmpty {
+            NoDataPlaceholderView(text: "No saved articles", image: Image(systemName: "heart"))
+        }
+    }
 }
+

@@ -13,41 +13,36 @@ struct SearchNewsView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if newsVM.searchNews.isEmpty {
-                    NoDataView(searchText: $newsVM.searchText)
-                } else {
-                    List(newsVM.searchNews, id: \.id) { news in
-                        NewsRowView(news: news)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(EdgeInsets())
-                            .onTapGesture {
-                                newsVM.selectedNews = news
-                            }
-                            .swipeActions(edge: .leading){
-                                Button {
-                                    withAnimation {
-                                        newsBookmarkVM.toggleSaved(item: news)
-                                    }
-                                } label: {
-                                    Image(systemName: "heart.fill" )
-                                        .resizable()
-                                        .frame(width: 50, height:50)
-                                }
-                                .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
-                            }
-                            .swipeActions(edge: .trailing) {
-                                Button(action: {
-                                    presentShareSheet(url: URL(string: news.url)!)
-                                }) {
-                                    Image(systemName: "square.and.arrow.up")
-                                }
-                                .tint(.theme)
-                            }
+            List(newsVM.searchNews, id: \.id) { news in
+                NewsRowView(news: news)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
+                    .onTapGesture {
+                        newsVM.selectedNews = news
                     }
-                    .listStyle(.plain)
-                }
+                    .swipeActions(edge: .leading){
+                        Button {
+                            withAnimation {
+                                newsBookmarkVM.toggleSaved(item: news)
+                            }
+                        } label: {
+                            Image(systemName: "heart.fill" )
+                                .resizable()
+                                .frame(width: 50, height:50)
+                        }
+                        .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button(action: {
+                            presentShareSheet(url: URL(string: news.url)!)
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .tint(.theme)
+                    }
             }
+            .listStyle(.plain)
+            .overlay(overlayView)
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle("Search")
         }
@@ -60,11 +55,22 @@ struct SearchNewsView: View {
             SafariView(url: URL(string: selectedNews.url)!)
         }
     }
-}
-
-struct SearchNewsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchNewsView()
+    
+    @ViewBuilder
+    private var overlayView: some View {
+        switch newsVM.viewState1 {
+        case .loading, .loadingMore:
+            LoaderView()
+        case .success(let news) where news.isEmpty:
+            NoDataPlaceholderView(text: "No matching articles found", image: nil)
+        case .failure(let error):
+            RetryView(text: error.localizedDescription) {
+                newsVM.searchNews(with: newsVM.searchText) {}
+            }
+        case .noData(let message):
+            NoDataPlaceholderView(text: message, image: Image(systemName: "magnifyingglass"))
+        default: EmptyView()
+        }
     }
 }
 

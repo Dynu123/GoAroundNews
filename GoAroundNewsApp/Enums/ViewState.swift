@@ -9,10 +9,10 @@ import Foundation
 
 enum ViewState<Model> {
     case loading
-    case success(model: Model)
-    case loadingMore(model: Model)
-    case failure(error: ServiceError)
-    case noData(message: String)
+    case success( _ model: Model)
+    case loadingMore( _ model: Model)
+    case failure( _ error: ServiceError)
+    case noData( _ message: String)
 
     var shouldLoad: Bool {
         switch self {

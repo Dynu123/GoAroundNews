@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860EF569295FB032003E7E53 /* NoDataPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860EF568295FB032003E7E53 /* NoDataPlaceholderView.swift */; };
+		860EF56B295FB1CD003E7E53 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860EF56A295FB1CD003E7E53 /* RetryView.swift */; };
 		867509F7294F36ED003AF8F7 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867509F6294F36ED003AF8F7 /* News.swift */; };
 		868CB0A429414E88001F1B03 /* GoAroundNewsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868CB0A329414E88001F1B03 /* GoAroundNewsAppApp.swift */; };
 		868CB0A629414E88001F1B03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868CB0A529414E88001F1B03 /* ContentView.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		860EF568295FB032003E7E53 /* NoDataPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataPlaceholderView.swift; sourceTree = "<group>"; };
+		860EF56A295FB1CD003E7E53 /* RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryView.swift; sourceTree = "<group>"; };
 		867509F6294F36ED003AF8F7 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		868CB0A029414E88001F1B03 /* GoAroundNewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoAroundNewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868CB0A329414E88001F1B03 /* GoAroundNewsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoAroundNewsAppApp.swift; sourceTree = "<group>"; };
@@ -298,6 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				868CB0F429434C81001F1B03 /* LoadingAnimationView.swift */,
+				860EF568295FB032003E7E53 /* NoDataPlaceholderView.swift */,
+				860EF56A295FB1CD003E7E53 /* RetryView.swift */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				86B8F40A2953ABB900BE5DFA /* CountryListView.swift in Sources */,
 				86BBC9542943EDB300D2E51E /* ViewState.swift in Sources */,
 				86BBC96D294BD72C00D2E51E /* NewsViewModel.swift in Sources */,
+				860EF569295FB032003E7E53 /* NoDataPlaceholderView.swift in Sources */,
 				86EFF739295E192A002FD8A8 /* View+extension.swift in Sources */,
 				86BBC9562943F51A00D2E51E /* LocalStorage.swift in Sources */,
 				868CB0D829422392001F1B03 /* String+extension.swift in Sources */,
@@ -481,6 +488,7 @@
 				86B8F4212954E20200BE5DFA /* BottomTabBarView.swift in Sources */,
 				868CB0A429414E88001F1B03 /* GoAroundNewsAppApp.swift in Sources */,
 				86B8F40E2953AC0300BE5DFA /* CategoryView.swift in Sources */,
+				860EF56B295FB1CD003E7E53 /* RetryView.swift in Sources */,
 				86B8F4192953B66000BE5DFA /* NewsRowView.swift in Sources */,
 				868CB0E2294239ED001F1B03 /* API.swift in Sources */,
 				86BBC96929490D4B00D2E51E /* NewsView.swift in Sources */,

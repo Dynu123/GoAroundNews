@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 class NewsViewModel: ObservableObject {
+    @Published var viewState = ViewState<[News]>.loading
+    @Published var viewState1 = ViewState<[News]>.noData("Search for news from all over the world, hit enter to start searching")
     @Published var isLoading: Bool = false
     @Published var searchText: String = ""
     private var networkService: NetworkServiceProtocol
@@ -24,7 +26,13 @@ class NewsViewModel: ObservableObject {
     }
     
     var searchNews: [News] {
-        searchText.isEmpty ? [] : news
+        if searchText.isEmpty {
+            DispatchQueue.main.async {
+                self.viewState1 = .noData("Search for news from all over the world, hit enter to start searching")
+            }
+            return []
+        }
+        return news
     }
     
     
@@ -32,31 +40,35 @@ class NewsViewModel: ObservableObject {
         self.networkService = networkService
     }
     
+  
+    
     func fetchTopNews(country: NewsCountry, category: NewsCategory, completion: @escaping () -> Void) {
-        isLoading = true
+        viewState = .loading
         self.networkService.execute(API.getTopNews(country: country, category: category)) { [weak self] (result: Result<[News], ServiceError>) in
             guard let self = self else { return }
-            self.isLoading = false
             switch result {
             case .success(let news):
+                self.viewState = .success(news)
                 self.news = news
                 completion() // for test case
-            case .failure:
+            case .failure(let error):
+                self.viewState = .failure(error)
                 completion()// for test case
             }
         }.store(in: &bag)
     }
     
     func searchNews(with query: String, completion: @escaping () -> Void) {
-        isLoading = true
+        viewState1 = .loading
         self.networkService.execute(API.getNewsOnSearch(text: query)) { [weak self] (result: Result<[News], ServiceError>) in
             guard let self = self else { return }
-            self.isLoading = false
             switch result {
             case .success(let news):
+                self.viewState1 = .success(news)
                 self.news = news
                 completion() // for test case
-            case .failure:
+            case .failure(let error):
+                self.viewState1 = .failure(error)
                 self.news = []
                 completion()// for test case
             }
