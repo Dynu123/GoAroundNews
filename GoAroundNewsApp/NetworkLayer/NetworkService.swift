@@ -31,19 +31,16 @@ extension NetworkServiceProtocol {
                     } catch {
                         do {
                             let failureResponse = try JSONDecoder().decode(FailureResponse.self, from: data)
-                            
-                                completion(.failure(.serverError(message: failureResponse.message)), response.response?.statusCode)
+                            completion(.failure(.serverError(message: failureResponse.message)), response.response?.statusCode)
                             
                         } catch {
                             completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                         }
                     }
                 case .failure(let error):
-                    print(error.failureReason)
                     completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                 }
             }
-            
     }
 }
 

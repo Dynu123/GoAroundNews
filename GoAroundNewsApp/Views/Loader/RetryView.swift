@@ -13,16 +13,23 @@ struct RetryView: View {
     let retryAction: () -> ()
     
     var body: some View {
-        VStack(spacing: 8) {
-            Text(text)
-                .font(.callout)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-            
-            Button(action: retryAction) {
-                Text("Try again")
+        ZStack {
+            VStack(spacing: 8) {
+                Spacer()
+                Text(text)
+                    .font(.callout)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                
+                Button(action: retryAction) {
+                    Text("Try again")
+                }
+                Spacer()
             }
+            .padding(16)
         }
-        .padding(16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(UIColor.systemBackground))
+        
     }
 }
