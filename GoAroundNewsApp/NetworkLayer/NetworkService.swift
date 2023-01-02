@@ -20,7 +20,6 @@ extension NetworkServiceProtocol {
     func execute<T: Decodable>(_ urlRequest: URLRequestBuilder,completion: @escaping (Result<T, ServiceError>, Int?) -> Void) {
         
         AF.request(urlRequest)
-            .validate()
             .responseData { (response: DataResponse<Data, AFError>) in
                 switch response.result {
                 case .success(let data):
@@ -32,16 +31,15 @@ extension NetworkServiceProtocol {
                     } catch {
                         do {
                             let failureResponse = try JSONDecoder().decode(FailureResponse.self, from: data)
-                            if failureResponse.code == "200" {
+                            
                                 completion(.failure(.serverError(message: failureResponse.message)), response.response?.statusCode)
-                            } else {
-                                completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
-                            }
+                            
                         } catch {
                             completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                         }
                     }
                 case .failure(let error):
+                    print(error.failureReason)
                     completion(.failure(.serverError(message: error.localizedDescription)), response.response?.statusCode)
                 }
             }

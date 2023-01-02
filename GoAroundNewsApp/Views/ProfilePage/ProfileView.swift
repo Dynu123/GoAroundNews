@@ -52,6 +52,7 @@ struct ProfileView: View {
                     LocalStorage.user = nil
                     loginVM.isUserLoggedIn = false
                     loginVM.showHome = false
+                    loginVM.credential = Credential()
                 }
                 Spacer()
             }

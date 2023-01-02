@@ -48,10 +48,8 @@ class LoginViewModel: ObservableObject {
     
     func showLoginError(with error: ServiceError, for statusCode: Int) {
         switch statusCode {
-        case 200, 400:
+        case 200, 400, 404:
             self.loginErrorMessage = error.localizedDescription
-        case 401:
-            self.loginErrorMessage = "Sorry, you are not authorized to access this app. Please sign in again to continue using this app."
         default:
             self.loginErrorMessage = "Something went wrong, please try again"
         }

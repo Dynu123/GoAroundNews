@@ -10,6 +10,8 @@ import Combine
 import Alamofire
 
 class SignupViewModel: ObservableObject {
+    @Published var signupMessage = ""
+    
     @Published var credential: Credential
     @Published var isLoading: Bool = false
     @Published var presentAlert: Bool = false
@@ -19,6 +21,17 @@ class SignupViewModel: ObservableObject {
     init(networkService: NetworkServiceProtocol, credential: Credential) {
         self.networkService = networkService
         self.credential = credential
+    }
+    
+    func showSignupError(with error: ServiceError, for statusCode: Int) {
+        switch statusCode {
+        case 200, 400, 404:
+            self.signupMessage = error.localizedDescription
+        default:
+            self.signupMessage = "Something went wrong, please try again"
+        }
+        
+        self.presentAlert = true
     }
     
     var signUpDisabled: Bool {
@@ -33,9 +46,10 @@ class SignupViewModel: ObservableObject {
             switch result {
             case .success:
                 self.presentAlert = true
+                self.signupMessage = "Registration successfull! Please login using your created credentials!"
                 completion() // for test case
-            case .failure:
-                self.presentAlert = false
+            case .failure(let error):       
+                self.showSignupError(with: error, for: statusCode ?? 0)
                 completion()// for test case
             }
         }

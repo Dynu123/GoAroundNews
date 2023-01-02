@@ -17,7 +17,7 @@ struct SignupView: View {
     
     var body: some View {
         ZStack {
-            VStack() {
+            VStack {
                 FormField(fieldName: "Enter name", isSecure: false, fieldValue: $signupVM.credential.name)
                     .padding()
                 FormField(fieldName: "Enter email", isSecure: false, fieldValue: $signupVM.credential.email)
@@ -67,10 +67,11 @@ struct SignupView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(UIColor.secondarySystemBackground))
-        .alert(isPresented: $signupVM.presentAlert) {
-            Alert(title: Text("Registration succesfull!"), message: Text("Please login using the credentials."), dismissButton: .cancel(Text("OK"), action: {
+        .alert(signupVM.signupMessage, isPresented: $signupVM.presentAlert) {
+            Button("OK", role: .cancel) {
+                signupVM.signupMessage = ""
                 showSignUp = false
-            }))
+            }
         }
     }
 }

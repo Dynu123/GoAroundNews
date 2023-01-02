@@ -81,7 +81,8 @@ struct NewsView: View {
         case .success(let news) where news.isEmpty:
             NoDataPlaceholderView(text: "No articles found", image: nil)
         case .failure(let error):
-            RetryView(text: error.localizedDescription) {
+            
+            RetryView(text: error.errorDescription ?? error.localizedDescription) {
                 newsVM.fetchTopNews(country: selectedCountry, category: newsVM.selectedCategory) {}
             }
         default: EmptyView()
