@@ -55,6 +55,9 @@
 		86BBC96929490D4B00D2E51E /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC96829490D4B00D2E51E /* NewsView.swift */; };
 		86BBC96D294BD72C00D2E51E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC96C294BD72C00D2E51E /* NewsViewModel.swift */; };
 		86BDD9A82963990A00E9D9A5 /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDD9A72963990A00E9D9A5 /* Mocker */; };
+		86BDD9AA296465E800E9D9A5 /* SignupAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9A9296465E700E9D9A5 /* SignupAPITests.swift */; };
+		86BDD9AC2964688700E9D9A5 /* NewsAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9AB2964688700E9D9A5 /* NewsAPITests.swift */; };
+		86BDD9AE29646AD400E9D9A5 /* ChangePasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9AD29646AD300E9D9A5 /* ChangePasswordTests.swift */; };
 		86C1340E2943D890004E5C2B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1340D2943D890004E5C2B /* ServiceError.swift */; };
 		86EFF73529579D3C002FD8A8 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */; };
 		86EFF73729579E00002FD8A8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */; };
@@ -122,6 +125,9 @@
 		86BBC9662947A5A100D2E51E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		86BBC96829490D4B00D2E51E /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		86BBC96C294BD72C00D2E51E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		86BDD9A9296465E700E9D9A5 /* SignupAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAPITests.swift; sourceTree = "<group>"; };
+		86BDD9AB2964688700E9D9A5 /* NewsAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPITests.swift; sourceTree = "<group>"; };
+		86BDD9AD29646AD300E9D9A5 /* ChangePasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordTests.swift; sourceTree = "<group>"; };
 		86C1340D2943D890004E5C2B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -201,6 +207,9 @@
 				86BBC95E2944B59800D2E51E /* MockNetworkService.swift */,
 				86BBC9602944B6E400D2E51E /* OneTimeLoginTests.swift */,
 				86BBC9622944B85400D2E51E /* LoginAPITests.swift */,
+				86BDD9A9296465E700E9D9A5 /* SignupAPITests.swift */,
+				86BDD9AB2964688700E9D9A5 /* NewsAPITests.swift */,
+				86BDD9AD29646AD300E9D9A5 /* ChangePasswordTests.swift */,
 			);
 			path = GoAroundNewsAppTests;
 			sourceTree = "<group>";
@@ -514,10 +523,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BDD9AE29646AD400E9D9A5 /* ChangePasswordTests.swift in Sources */,
 				86BBC95F2944B59800D2E51E /* MockNetworkService.swift in Sources */,
+				86BDD9AC2964688700E9D9A5 /* NewsAPITests.swift in Sources */,
 				86BBC9632944B85400D2E51E /* LoginAPITests.swift in Sources */,
 				86BBC95A2944B4AF00D2E51E /* LoginValidationTests.swift in Sources */,
 				868CB0B529414E93001F1B03 /* EmailValidationTests.swift in Sources */,
+				86BDD9AA296465E800E9D9A5 /* SignupAPITests.swift in Sources */,
 				86BBC9612944B6E400D2E51E /* OneTimeLoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,7 +38,7 @@ class LoginViewModel: ObservableObject {
 
     private func addDebugCredentials() {
         ///#if targetEnvironment(simulator)
-        credential = Credential(email: "dyana@yopmail.com", password: "123456")
+        //credential = Credential(email: "dyana@yopmail.com", password: "123456")
         //#endif
     }
     

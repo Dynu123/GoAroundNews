@@ -1,8 +1,8 @@
 //
-//  LoginAPITests.swift
+//  SignupAPITests.swift
 //  GoAroundNewsAppTests
 //
-//  Created by Dyana Varghese on 10/12/22.
+//  Created by Dyana Varghese on 03/01/23.
 //
 
 import XCTest
@@ -11,19 +11,17 @@ import Combine
 import Alamofire
 import Mocker
 
+final class SignupAPITests: XCTestCase {
 
-final class LoginAPITests: XCTestCase {
-    
     // MARK: - Test for validating data on successful API call
-    func test_login_api_onsuccess() throws {
+    func test_signup_api_onsuccess() throws {
         let configuration = URLSessionConfiguration.af.default
         configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
         let sessionManager = Session(configuration: configuration)
         
-        let credential = Credential(email: "dyana@yopmail.com", password: "1")
-        let endpoint = API.login(credential: credential).requestURL
-        let expectedUser = User(id: 1, email: credential.email, token: "", name: "Dyana", phone: "5431234567")
-        let successResponse = SuccessResponse(code: "200", message: "Success", data: expectedUser)
+        let credential = Credential(phone: "1234567890", email: "dyana@yopmail.com", password: "1", confirmPassword: "1")
+        let endpoint = API.signup(credential: credential).requestURL
+        let successResponse = SuccessResponse(code: "200", message: "Success", data: true)
         let mockedData = try! JSONEncoder().encode(successResponse)
         let mock = Mock(url: endpoint, dataType: .json, statusCode: 200, data: [.get: mockedData])
         let requestExpectation = expectation(description: "Request should finish")
@@ -32,14 +30,13 @@ final class LoginAPITests: XCTestCase {
         sessionManager
             .request(endpoint)
             .responseData { (response: DataResponse<Data, AFError>) in
-                XCTAssertNil(response.error)
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let successResponse = try decoder.decode(SuccessResponse<User>.self, from: response.value!)
-                    
+                    let successResponse = try decoder.decode(SuccessResponse<Bool>.self, from: response.value!)
+                    XCTAssertNil(response.error)
                     XCTAssertNotNil(successResponse.data)
-                    XCTAssertEqual(successResponse.data.email, expectedUser.email)
+                    XCTAssertEqual(successResponse.data, true)
                 } catch {
                 }
                 requestExpectation.fulfill()
@@ -49,13 +46,13 @@ final class LoginAPITests: XCTestCase {
     }
     
     // MARK: - Test for validating data on failure API call
-    func test_login_api_onfailure() throws {
+    func test_signup_api_onfailure() throws {
         let configuration = URLSessionConfiguration.af.default
         configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
         let sessionManager = Session(configuration: configuration)
         
-        let credential = Credential(email: "dyana@yopmail.com", password: "1")
-        let endpoint = API.login(credential: credential).requestURL
+        let credential = Credential(phone: "1234567890", email: "dyana@yopmail.com", password: "1", confirmPassword: "1")
+        let endpoint = API.signup(credential: credential).requestURL
         
         let error = NSError(domain: "Bad request", code: 400)
         let expectedFailure = FailureResponse(code: "\(error.code)", message: error.domain)
@@ -80,5 +77,5 @@ final class LoginAPITests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
     }
-    
+
 }
