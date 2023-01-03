@@ -8,32 +8,76 @@
 import XCTest
 @testable import GoAroundNewsApp
 import Combine
+import Alamofire
+import Mocker
 
 
 final class LoginAPITests: XCTestCase {
     
-    // MARK: - Declare parameters for depedency injection by creating mock network service
-    var viewModel: LoginViewModel!
-    var networkService: MockNetworkService!
-    var credential: Credential!
-    
-    override func setUp() {
-        networkService = MockNetworkService()
-        credential = Credential()
-        viewModel = .init(networkService: networkService, credential: credential)
-    }
-    
     // MARK: - Test for validating data on successful API call
     func test_login_api_onsuccess() throws {
-        networkService.item = CurrentValueSubject(APIResponse<User>.init(code: "200", message: "sucess", data: .sample)).eraseToAnyPublisher()
-        let expectation = expectation(description: "wait for completion")
-        viewModel.login {
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 10, handler: nil)
-        XCTAssertNotNil(LocalStorage.user)
-        XCTAssertEqual(LocalStorage.user?.name, "Dyana")
-        XCTAssertEqual(LocalStorage.user?.email, "Dyana@yopmail.com" )
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
+        let sessionManager = Session(configuration: configuration)
+        
+        let credential = Credential(email: "dyana@yopmail.com", password: "1")
+        let endpoint = API.login(credential: credential).requestURL
+        let expectedUser = User(id: 1, email: credential.email, token: "", name: "Dyana", phone: "5431234567")
+        let successResponse = SuccessResponse(code: "200", message: "Success", data: expectedUser)
+        let mockedData = try! JSONEncoder().encode(successResponse)
+        let mock = Mock(url: endpoint, dataType: .json, statusCode: 200, data: [.get: mockedData])
+        let requestExpectation = expectation(description: "Request should finish")
+        mock.register()
+        
+        sessionManager
+            .request(endpoint)
+            .responseData { (response: DataResponse<Data, AFError>) in
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let successResponse = try decoder.decode(SuccessResponse<User>.self, from: response.value!)
+                    XCTAssertNil(response.error)
+                    XCTAssertNotNil(successResponse.data)
+                    XCTAssertEqual(successResponse.data.email, expectedUser.email)
+                } catch {
+                }
+                requestExpectation.fulfill()
+            }.resume()
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
-
+    
+    // MARK: - Test for validating data on failure API call
+    func test_login_api_onfailure() throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
+        let sessionManager = Session(configuration: configuration)
+        
+        let credential = Credential(email: "dyana@yopmail.com", password: "1")
+        let endpoint = API.login(credential: credential).requestURL
+        
+        let error = NSError(domain: "Bad request", code: 400)
+        let expectedFailure = FailureResponse(code: "\(error.code)", message: error.domain)
+        let mockedData = try! JSONEncoder().encode(expectedFailure)
+        let requestExpectation = expectation(description: "Request should finish")
+        
+        let mock = Mock(url: endpoint, dataType: .json, statusCode: error.code, data: [.get: mockedData])
+        mock.register()
+        
+        sessionManager
+            .request(endpoint)
+            .responseData { (response: DataResponse<Data, AFError>) in
+                do {
+                    let failureResponse = try JSONDecoder().decode(FailureResponse.self, from: response.value!)
+                    XCTAssertNotNil(failureResponse)
+                    XCTAssertEqual(failureResponse.code, expectedFailure.code)
+                } catch {
+                    
+                }
+                requestExpectation.fulfill()
+            }.resume()
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
 }

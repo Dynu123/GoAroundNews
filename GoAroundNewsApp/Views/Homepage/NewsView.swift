@@ -26,6 +26,7 @@ struct NewsView: View {
                                 .onTapGesture {
                                     newsVM.selectedNews = news
                                 }
+                                
                                 .swipeActions(edge: .leading){
                                     Button {
                                         withAnimation {
@@ -36,8 +37,10 @@ struct NewsView: View {
                                             .resizable()
                                             .frame(width: 50, height:50)
                                     }
+                                    
                                     .tint(newsBookmarkVM.isSaved(item: news) ? .red : .red.opacity(0.3) )
                                 }
+                                
                                 .swipeActions(edge: .trailing) {
                                     Button(action: {
                                         presentShareSheet(url: URL(string: news.url)!)
@@ -48,6 +51,7 @@ struct NewsView: View {
                                 }
                         }
                     }
+                    .background(.white)
                     .listStyle(.plain)
                     .overlay(overlayView)
                 }

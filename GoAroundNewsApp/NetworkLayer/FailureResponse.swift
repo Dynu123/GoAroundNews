@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FailureResponse: Decodable {
+struct FailureResponse: Codable {
     let code: String
     let message: String
 }

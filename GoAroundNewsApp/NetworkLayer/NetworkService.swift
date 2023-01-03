@@ -17,7 +17,7 @@ protocol NetworkServiceProtocol: AnyObject {
 
 // MARK: - Extend NetworkServiceProtocol to implement the method
 extension NetworkServiceProtocol {
-    func execute<T: Decodable>(_ urlRequest: URLRequestBuilder,completion: @escaping (Result<T, ServiceError>, Int?) -> Void) {
+    func execute<T: Codable>(_ urlRequest: URLRequestBuilder,completion: @escaping (Result<T, ServiceError>, Int?) -> Void) {
         
         AF.request(urlRequest)
             .responseData { (response: DataResponse<Data, AFError>) in
