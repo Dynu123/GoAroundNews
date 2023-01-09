@@ -15,16 +15,17 @@ final class SignupAPITests: XCTestCase {
 
     // MARK: - Test for validating data on successful API call
     func test_signup_api_onsuccess() throws {
-        let configuration = URLSessionConfiguration.af.default
-        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
-        let sessionManager = Session(configuration: configuration)
-        
-        let credential = Credential(phone: "1234567890", email: "dyana@yopmail.com", password: "1", confirmPassword: "1")
+        let sessionManager = MockSession.shared.mockSessionManager
+        let credential = Credential(phone: "1234567890",
+                                    email: "dyana@yopmail.com",
+                                    password: "1",
+                                    confirmPassword: "1")
         let endpoint = API.signup(credential: credential).requestURL
         let successResponse = SuccessResponse(code: "200", message: "Success", data: true)
         let mockedData = try! JSONEncoder().encode(successResponse)
         let mock = Mock(url: endpoint, dataType: .json, statusCode: 200, data: [.get: mockedData])
         let requestExpectation = expectation(description: "Request should finish")
+        
         mock.register()
         
         sessionManager
@@ -41,25 +42,22 @@ final class SignupAPITests: XCTestCase {
                 }
                 requestExpectation.fulfill()
             }.resume()
-        
         waitForExpectations(timeout: 5, handler: nil)
     }
     
     // MARK: - Test for validating data on failure API call
     func test_signup_api_onfailure() throws {
-        let configuration = URLSessionConfiguration.af.default
-        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
-        let sessionManager = Session(configuration: configuration)
-        
-        let credential = Credential(phone: "1234567890", email: "dyana@yopmail.com", password: "1", confirmPassword: "1")
+        let sessionManager = MockSession.shared.mockSessionManager
+        let credential = Credential(phone: "1234567890",
+                                    email: "dyana@yopmail.com",
+                                    password: "1", confirmPassword: "1")
         let endpoint = API.signup(credential: credential).requestURL
-        
         let error = NSError(domain: "Bad request", code: 400)
         let expectedFailure = FailureResponse(code: "\(error.code)", message: error.domain)
         let mockedData = try! JSONEncoder().encode(expectedFailure)
         let requestExpectation = expectation(description: "Request should finish")
-        
         let mock = Mock(url: endpoint, dataType: .json, statusCode: error.code, data: [.get: mockedData])
+        
         mock.register()
         
         sessionManager
@@ -74,8 +72,6 @@ final class SignupAPITests: XCTestCase {
                 }
                 requestExpectation.fulfill()
             }.resume()
-        
         waitForExpectations(timeout: 5, handler: nil)
     }
-
 }

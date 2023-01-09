@@ -11,15 +11,23 @@ import Combine
 import Alamofire
 import Mocker
 
+final class MockSession {
+    
+    private init() {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
+        mockSessionManager = Session(configuration: configuration)
+    }
+    static var shared = MockSession()
+    let mockSessionManager: Session
+}
+
 
 final class LoginAPITests: XCTestCase {
     
     // MARK: - Test for validating data on successful API call
     func test_login_api_onsuccess() throws {
-        let configuration = URLSessionConfiguration.af.default
-        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
-        let sessionManager = Session(configuration: configuration)
-        
+        let sessionManager = MockSession.shared.mockSessionManager
         let credential = Credential(email: "dyana@yopmail.com", password: "1")
         let endpoint = API.login(credential: credential).requestURL
         let expectedUser = User(id: 1, email: credential.email, token: "", name: "Dyana", phone: "5431234567")
@@ -50,19 +58,15 @@ final class LoginAPITests: XCTestCase {
     
     // MARK: - Test for validating data on failure API call
     func test_login_api_onfailure() throws {
-        let configuration = URLSessionConfiguration.af.default
-        configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
-        let sessionManager = Session(configuration: configuration)
-        
+        let sessionManager = MockSession.shared.mockSessionManager
         let credential = Credential(email: "dyana@yopmail.com", password: "1")
         let endpoint = API.login(credential: credential).requestURL
-        
         let error = NSError(domain: "Bad request", code: 400)
         let expectedFailure = FailureResponse(code: "\(error.code)", message: error.domain)
         let mockedData = try! JSONEncoder().encode(expectedFailure)
         let requestExpectation = expectation(description: "Request should finish")
-        
         let mock = Mock(url: endpoint, dataType: .json, statusCode: error.code, data: [.get: mockedData])
+        
         mock.register()
         
         sessionManager

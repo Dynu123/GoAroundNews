@@ -11,7 +11,7 @@ struct LoginView: View {
     @StateObject private var loginVM = LoginViewModel(networkService: NetworkService(), credential: Credential())
     
     var authButtonColor: Color {
-        loginVM.loginDisabled ? Color.theme.opacity(0.5) : Color.theme
+        loginVM.loginDisabled ? Color.accentColor.opacity(0.5) : Color.accentColor
     }
     
     var body: some View {
@@ -22,18 +22,18 @@ struct LoginView: View {
                 FormField(fieldName: "Enter password", isSecure: true, fieldValue: $loginVM.credential.password)
                     .padding()
                 SolidButton(title: "Login", bgColor: authButtonColor, action: { loginVM.login{} })
-                .disabled(loginVM.loginDisabled)
-                .padding(20)
+                    .disabled(loginVM.loginDisabled)
+                    .padding(20)
                 
-                    Divider()
-                        .frame(width: 200)
-                        .padding(.bottom, 8)
-                    Text("OR")
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 8)
-                    Divider()
-                        .frame(width: 200)
-                        .padding(.bottom, 8)
+                Divider()
+                    .frame(width: 200)
+                    .padding(.bottom, 8)
+                Text("OR")
+                    .foregroundColor(.secondary)
+                    .padding(.bottom, 8)
+                Divider()
+                    .frame(width: 200)
+                    .padding(.bottom, 8)
                 
                 Button("Create an account") {
                     loginVM.showSignup.toggle()

@@ -45,7 +45,6 @@
 		86B8F4282954F15400BE5DFA /* SearchNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8F4272954F15400BE5DFA /* SearchNewsView.swift */; };
 		86BBC9542943EDB300D2E51E /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9532943EDB300D2E51E /* ViewState.swift */; };
 		86BBC9562943F51A00D2E51E /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9552943F51A00D2E51E /* LocalStorage.swift */; };
-		86BBC9582943F69400D2E51E /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9572943F69400D2E51E /* Auth.swift */; };
 		86BBC95A2944B4AF00D2E51E /* LoginValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9592944B4AF00D2E51E /* LoginValidationTests.swift */; };
 		86BBC95F2944B59800D2E51E /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC95E2944B59800D2E51E /* MockNetworkService.swift */; };
 		86BBC9612944B6E400D2E51E /* OneTimeLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBC9602944B6E400D2E51E /* OneTimeLoginTests.swift */; };
@@ -58,6 +57,9 @@
 		86BDD9AA296465E800E9D9A5 /* SignupAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9A9296465E700E9D9A5 /* SignupAPITests.swift */; };
 		86BDD9AC2964688700E9D9A5 /* NewsAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9AB2964688700E9D9A5 /* NewsAPITests.swift */; };
 		86BDD9AE29646AD400E9D9A5 /* ChangePasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9AD29646AD300E9D9A5 /* ChangePasswordTests.swift */; };
+		86BDD9B0296470FD00E9D9A5 /* SignupValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9AF296470FD00E9D9A5 /* SignupValidationTests.swift */; };
+		86BDD9B22964892800E9D9A5 /* NewsSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BDD9B12964892800E9D9A5 /* NewsSearchTests.swift */; };
+		86BDD9B42964E6F100E9D9A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86BDD9B32964E6F100E9D9A5 /* LaunchScreen.storyboard */; };
 		86C1340E2943D890004E5C2B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1340D2943D890004E5C2B /* ServiceError.swift */; };
 		86EFF73529579D3C002FD8A8 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */; };
 		86EFF73729579E00002FD8A8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */; };
@@ -116,7 +118,6 @@
 		86B8F4272954F15400BE5DFA /* SearchNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNewsView.swift; sourceTree = "<group>"; };
 		86BBC9532943EDB300D2E51E /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		86BBC9552943F51A00D2E51E /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
-		86BBC9572943F69400D2E51E /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		86BBC9592944B4AF00D2E51E /* LoginValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidationTests.swift; sourceTree = "<group>"; };
 		86BBC95E2944B59800D2E51E /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		86BBC9602944B6E400D2E51E /* OneTimeLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeLoginTests.swift; sourceTree = "<group>"; };
@@ -128,6 +129,9 @@
 		86BDD9A9296465E700E9D9A5 /* SignupAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAPITests.swift; sourceTree = "<group>"; };
 		86BDD9AB2964688700E9D9A5 /* NewsAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPITests.swift; sourceTree = "<group>"; };
 		86BDD9AD29646AD300E9D9A5 /* ChangePasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordTests.swift; sourceTree = "<group>"; };
+		86BDD9AF296470FD00E9D9A5 /* SignupValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidationTests.swift; sourceTree = "<group>"; };
+		86BDD9B12964892800E9D9A5 /* NewsSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchTests.swift; sourceTree = "<group>"; };
+		86BDD9B32964E6F100E9D9A5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86C1340D2943D890004E5C2B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		86EFF73429579D3C002FD8A8 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		86EFF73629579E00002FD8A8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				868CB0DD2942397C001F1B03 /* Helper */,
 				868CB0DC2942395B001F1B03 /* Views */,
 				868CB0A729414E92001F1B03 /* Assets.xcassets */,
+				86BDD9B32964E6F100E9D9A5 /* LaunchScreen.storyboard */,
 				868CB0A929414E92001F1B03 /* Preview Content */,
 			);
 			path = GoAroundNewsApp;
@@ -204,11 +209,13 @@
 			children = (
 				868CB0B429414E93001F1B03 /* EmailValidationTests.swift */,
 				86BBC9592944B4AF00D2E51E /* LoginValidationTests.swift */,
+				86BDD9AF296470FD00E9D9A5 /* SignupValidationTests.swift */,
 				86BBC95E2944B59800D2E51E /* MockNetworkService.swift */,
 				86BBC9602944B6E400D2E51E /* OneTimeLoginTests.swift */,
 				86BBC9622944B85400D2E51E /* LoginAPITests.swift */,
 				86BDD9A9296465E700E9D9A5 /* SignupAPITests.swift */,
 				86BDD9AB2964688700E9D9A5 /* NewsAPITests.swift */,
+				86BDD9B12964892800E9D9A5 /* NewsSearchTests.swift */,
 				86BDD9AD29646AD300E9D9A5 /* ChangePasswordTests.swift */,
 			);
 			path = GoAroundNewsAppTests;
@@ -278,7 +285,6 @@
 		868CB0E929423E3B001F1B03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				86BBC9572943F69400D2E51E /* Auth.swift */,
 				868CB0EA29423E46001F1B03 /* User.swift */,
 				868CB0F02942565B001F1B03 /* Credential.swift */,
 				867509F6294F36ED003AF8F7 /* News.swift */,
@@ -453,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BDD9B42964E6F100E9D9A5 /* LaunchScreen.storyboard in Resources */,
 				868CB0AB29414E92001F1B03 /* Preview Assets.xcassets in Resources */,
 				868CB0A829414E92001F1B03 /* Assets.xcassets in Resources */,
 			);
@@ -498,7 +505,6 @@
 				86EFF73529579D3C002FD8A8 /* ChangePasswordView.swift in Sources */,
 				868CB0E4294239FB001F1B03 /* AppEnvironment.swift in Sources */,
 				868CB0EF29423EE7001F1B03 /* FailureResponse.swift in Sources */,
-				86BBC9582943F69400D2E51E /* Auth.swift in Sources */,
 				868CB0D4294151BF001F1B03 /* ColorSet.swift in Sources */,
 				86B8F4212954E20200BE5DFA /* BottomTabBarView.swift in Sources */,
 				868CB0A429414E88001F1B03 /* GoAroundNewsAppApp.swift in Sources */,
@@ -527,7 +533,9 @@
 				86BBC95F2944B59800D2E51E /* MockNetworkService.swift in Sources */,
 				86BDD9AC2964688700E9D9A5 /* NewsAPITests.swift in Sources */,
 				86BBC9632944B85400D2E51E /* LoginAPITests.swift in Sources */,
+				86BDD9B22964892800E9D9A5 /* NewsSearchTests.swift in Sources */,
 				86BBC95A2944B4AF00D2E51E /* LoginValidationTests.swift in Sources */,
+				86BDD9B0296470FD00E9D9A5 /* SignupValidationTests.swift in Sources */,
 				868CB0B529414E93001F1B03 /* EmailValidationTests.swift in Sources */,
 				86BDD9AA296465E800E9D9A5 /* SignupAPITests.swift in Sources */,
 				86BBC9612944B6E400D2E51E /* OneTimeLoginTests.swift in Sources */,
@@ -674,6 +682,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -704,6 +713,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

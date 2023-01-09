@@ -13,6 +13,7 @@ class ProfileViewModel: ObservableObject {
     @Published var newPassword: String = ""
     @Published var confirmPassword: String = ""
     @Published var presentAlert: Bool = false
+    @Published var showMessage = ""
     
     @Published var isLoading: Bool = false
     private var bag: [AnyCancellable] = []
@@ -20,6 +21,21 @@ class ProfileViewModel: ObservableObject {
     
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
+    }
+    
+    var changePasswordDisabled: Bool {
+        currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty || newPassword != confirmPassword
+    }
+    
+    func showError(with error: ServiceError, for statusCode: Int) {
+        switch statusCode {
+        case 200, 400, 404:
+            self.showMessage = error.localizedDescription
+        default:
+            self.showMessage = "Something went wrong, please try again"
+        }
+        
+        self.presentAlert = true
     }
     
     func changePassword(completion: @escaping () -> Void) {
@@ -30,10 +46,11 @@ class ProfileViewModel: ObservableObject {
             self.isLoading = false
             switch result {
             case .success:
+                self.showMessage = "Password updated successfully!"
                 self.presentAlert = true
                 completion() // for test case
-            case .failure:
-                self.presentAlert = false
+            case .failure(let error):
+                self.showError(with: error, for: statusCode ?? 0)
                 completion()// for test case
             }
         }

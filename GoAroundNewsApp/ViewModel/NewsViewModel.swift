@@ -35,12 +35,9 @@ class NewsViewModel: ObservableObject {
         return news
     }
     
-    
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
-    
-  
     
     func fetchTopNews(country: NewsCountry, category: NewsCategory, completion: @escaping () -> Void) {
         viewState = .loading
